@@ -1,5 +1,7 @@
 # Virtual Display Project Progress
 
+A system level user space program meant to use connected mobile/tablet devices as secondary displays.
+
 ## System Setup
 - Hardware: AMD Radeon 680M + NVIDIA RTX 2050
 - OS: Arch Linux + Hyprland
