@@ -1,15 +1,15 @@
 # Compiler and flags
-CXX = g++
-CXXFLAGS = -I/usr/include/libdrm -std=c++17 -Wall -Wextra
+CXX = gcc
+CXXFLAGS = -I/usr/include/libdrm -Wall -Wextra
 
 # Linker flags
-LDFLAGS = -ldrm
+LDFLAGS = -ldrm -lpthread edid.h
 
 # Target executable
-TARGET = OpenCard
+TARGET = vmonitor
 
 # Source files
-SRCS = OpenCard.cpp
+SRCS = vmonitor.c
 
 # Build rule
 all: $(TARGET)
