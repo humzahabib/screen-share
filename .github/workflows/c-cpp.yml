@@ -1,4 +1,4 @@
-name: C/C++ CI
+name: Build
 
 on:
   push:
@@ -8,16 +8,32 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: configure
-      run: ./configure
-    - name: make
-      run: make
-    - name: make check
-      run: make check
-    - name: make distcheck
-      run: make distcheck
+      - uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: sudo apt-get install -y gcc make
+
+      - name: Build
+        run: make
+
+      - name: Verify binary exists
+        run: test -f ./vmonitor
+
+      - name: Verify EDID checksums
+        run: |
+          python3 - << 'EOF'
+          import re
+
+          with open("edid.h") as f:
+              content = f.read()
+
+          arrays = re.findall(r'\.data\s*=\s*\{([^}]+)\}', content)
+          for i, arr in enumerate(arrays):
+              data = [int(x, 16) for x in re.findall(r'0x[0-9a-f]{2}', arr)]
+              total = sum(data) & 0xff
+              assert total == 0, f"Preset {i}: checksum FAIL (sum={total:#04x})"
+              print(f"Preset {i}: OK")
+          EOF
