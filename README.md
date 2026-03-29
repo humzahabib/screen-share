@@ -9,11 +9,12 @@ A system level user space program meant to use connected mobile/tablet devices a
 - Permissions: In video group, can access DRM devices
 
 ## Completed Challenges
-1. ✅ List files in /dev/dri/
-2. ✅ Open DRM device file
-3. ✅ First DRM API call (drmGetVersion)
-4. ✅ Get DRM resources count
-5. 🔄 Currently: Listing connector details
+1. List files in /dev/dri/
+2. Open DRM device file
+3. First DRM API call (drmGetVersion)
+4. Get DRM resources count
+5. Listing connector details
+6. Made a Virtual Monitor by manipulating files in /sys/class/drm
 
 ## Key Learnings
 - DRM concepts: CRTC, Encoder, Connector
